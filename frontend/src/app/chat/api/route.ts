@@ -1,4 +1,4 @@
-import axios from "axios";
+import ky from "ky";
 import { isUndefined } from "lodash";
 
 export const runtime = "edge";
@@ -9,23 +9,23 @@ export async function POST(request: Request) {
     try {
         const { prompt } = await request.json();
 
-        const functionRequest = await axios.post(
+        const functionRequest = await ky.post(
             `${process.env.NEXT_PUBLIC_VERIFICATION_SERVER_LOCAL_HOST_URL}/api/chainlink-functions/function-request-openai-prompt`,
             {
-                prompt: prompt,
+                json: { prompt: prompt },
             }
         );
-        await functionRequest.data;
+        await functionRequest.json();
 
         let functionResponse: string | undefined;
 
         while (isUndefined(functionResponse) || previousResponse === functionResponse) {
             await new Promise((resolve) => setTimeout(resolve, 5000));
-            await axios
-                .post<string>(`${process.env.NEXT_PUBLIC_VERIFICATION_SERVER_LOCAL_HOST_URL}/api/chainlink-functions/function-response-openai-prompt`)
-                .then((res) => {
-                    functionResponse = res.data;
-                });
+            const res = await ky.post(
+                `${process.env.NEXT_PUBLIC_VERIFICATION_SERVER_LOCAL_HOST_URL}/api/chainlink-functions/function-response-openai-prompt`
+            );
+
+            functionResponse = (await res.json()) as string;
         }
 
         previousResponse = functionResponse;
