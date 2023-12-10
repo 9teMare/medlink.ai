@@ -4,6 +4,7 @@
     "description": "Medlink AI",
     "main": "index.js",
     "scripts": {
+        "tsc": "./node_modules/typescript/bin/tsc",
         "start": "node dist/index.js",
         "dev": "tsc-watch --onSuccess \"node ./dist/index.js\"",
         "build": "rm -rf ./dist && tsc",
@@ -35,7 +36,7 @@
         "socket.io": "^4.7.2",
         "ts-node": "^10.9.1",
         "tsc-watch": "^6.0.4",
-        "typescript": "^5.2.2"
+        "typescript": "^5.3.3"
     },
     "dependencies": {
         "@chainlink/contracts": "^0.8.0",
