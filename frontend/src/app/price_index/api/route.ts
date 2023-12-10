@@ -1,5 +1,7 @@
 import { DrugDetails } from "@/constants/types";
-import axios, { AxiosError } from "axios";
+import axios from "axios";
+
+export const runtime = "edge";
 
 export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);

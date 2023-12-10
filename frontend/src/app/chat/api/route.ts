@@ -1,6 +1,8 @@
 import axios from "axios";
 import { isUndefined } from "lodash";
 
+export const runtime = "edge";
+
 export async function POST(request: Request) {
     let previousResponse = "";
 

@@ -1,6 +1,8 @@
 import { ProviderDetail } from "@/constants/types";
 import axios from "axios";
 
+export const runtime = "edge";
+
 export async function POST(request: Request) {
     try {
         const { product, budget, consumerAddress, subscriptionId } = await request.json();
