@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2016",
     "module": "commonjs",
     "baseUrl": "./src",                                  
     "paths": {
@@ -9,16 +9,14 @@
       "@/middleware/*" : ["middleware/*"],
     },   
     "resolveJsonModule": true,  
-    "isolatedModules": true,
     "outDir": "dist",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
     "allowJs": true,
-    "moduleResolution": "node",
-    "incremental": true,
+    "checkJs": false,
   },
-  "include": ["**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }
