@@ -3,6 +3,7 @@
     "version": "1.0.1",
     "description": "Medlink AI",
     "main": "index.js",
+    "type": "module",
     "scripts": {
         "tsc": "./node_modules/typescript/bin/tsc",
         "start": "node dist/index.js",
